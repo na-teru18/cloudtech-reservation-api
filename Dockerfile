@@ -26,7 +26,7 @@ WORKDIR /root/
 COPY --from=builder /app/server .
 
 # ポート80を開放
-EXPOSE 8080
+EXPOSE 80
 
 # 実行可能ファイルを実行
 CMD ["./server"]
