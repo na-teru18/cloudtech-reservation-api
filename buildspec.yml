@@ -1,9 +1,7 @@
 version: 0.2
-
 env:
   variables:
-    ECR_REPOSITORY: 086997486593.dkr.ecr.us-east-1.amazonaws.com/api-repository
-
+    ECR_REPO_NAME: 086997486593.dkr.ecr.us-east-1.amazonaws.com/api-repository
 phases:
   pre_build:
     commands:
@@ -22,12 +20,8 @@ phases:
       - docker tag teruya-api-deploy-container:latest ${ECR_IMAGE_URI}
       - docker push ${ECR_IMAGE_URI}
 
-      #- printf '[{"name":"code-nginx-contaier-name","imageUri":"%s"}]' ${ECR_IMAGE_URI} > imagedefinitions.json
-      - printf '{"ImageURI":"%s"}' ${ECR_IMAGE_URI} > imageDetail.json
+      - printf '[{"name":"code-nginx-contaier-name","imageUri":"%s"}]' ${ECR_IMAGE_URI} > imagedefinitions.json
 
 artifacts:
   files:
-    #    - imagedefinitions.json
-    - appspec.yml
-    - taskdef.json
-    - imageDetail.json
+    - imagedefinitions.json
